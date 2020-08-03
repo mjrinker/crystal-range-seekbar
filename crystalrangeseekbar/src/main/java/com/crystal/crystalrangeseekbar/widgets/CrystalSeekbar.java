@@ -96,6 +96,8 @@ public class CrystalSeekbar extends View {
     private float barPadding;
     private float _barHeight;
     private float barHeight;
+    private float _barHighlightHeight;
+    private float barHighlightHeight;
     private float thumbWidth;
     private float thumbHeight;
     private float thumbDiameter;
@@ -147,6 +149,7 @@ public class CrystalSeekbar extends View {
             minStartValue = getMinStartValue(array);
             steps = getSteps(array);
             _barHeight = getBarHeight(array);
+            _barHighlightHeight = getBarHighlightHeight(array);
             barColorMode = getBarColorMode(array);
             barColor = getBarColor(array);
             barGradientStart = getBarGradientStart(array);
@@ -187,6 +190,7 @@ public class CrystalSeekbar extends View {
         thumbHeight = getThumbHeight();
 
         barHeight = getBarHeight();
+        barHighlightHeight = getBarHighlightHeight();
         barPadding = getBarPadding();
 
         _paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -233,6 +237,11 @@ public class CrystalSeekbar extends View {
 
     public CrystalSeekbar setBarHeight(float barHeight) {
         this._barHeight = barHeight;
+        return this;
+    }
+
+    public CrystalSeekbar setBarHighlightHeight(float barHighlightHeight) {
+        this._barHighlightHeight = barHighlightHeight;
         return this;
     }
 
@@ -413,6 +422,10 @@ public class CrystalSeekbar extends View {
         return _barHeight > 0 ? _barHeight : (thumbHeight * 0.5f) * 0.3f;
     }
 
+    public float getBarHighlightHeight() {
+        return _barHighlightHeight > 0 ? _barHighlightHeight : (thumbHeight * 0.5f) * 0.3f;
+    }
+
     public float getDiameter(final TypedArray typedArray) {
         return typedArray.getDimensionPixelSize(R.styleable.CrystalSeekbar_thumb_diameter, getResources().getDimensionPixelSize(R.dimen.thumb_height));
     }
@@ -477,6 +490,7 @@ public class CrystalSeekbar extends View {
         thumbHeight = (thumb != null) ? thumb.getHeight() : getResources().getDimension(R.dimen.thumb_height);
 
         barHeight = (thumbHeight * 0.5f) * 0.3f;
+        barHighlightHeight = (thumbHeight * 0.5f) * 0.3f;
         barPadding = thumbWidth * 0.5f;
 
         // set min start value
@@ -538,6 +552,10 @@ public class CrystalSeekbar extends View {
 
     protected float getBarHeight(final TypedArray typedArray){
         return typedArray.getDimensionPixelSize(R.styleable.CrystalSeekbar_bar_height, 0);
+    }
+
+    protected float getBarHighlightHeight(final TypedArray typedArray){
+        return typedArray.getDimensionPixelSize(R.styleable.CrystalSeekbar_bar_highlight_height, 0);
     }
 
     protected int getBarColorMode(final TypedArray typedArray) {
@@ -638,6 +656,9 @@ public class CrystalSeekbar extends View {
             rect.left = getThumbWidth() / 2;
             rect.right = normalizedToScreen(normalizedMinValue) + (getThumbWidth() / 2);
         }
+
+        rect.top = 0.5f * (getHeight() - barHighlightHeight);
+        rect.bottom = 0.5f * (getHeight() + barHighlightHeight);
 
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);

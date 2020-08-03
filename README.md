@@ -8,7 +8,7 @@ An extended version of seekbar and range seekbar with basic and advanced customi
 Add a dependency to your `build.gradle`:
 ```groovy
 dependencies {
-    implementation 'com.github.syedowaisali:crystal-range-seekbar:77d3cc9994'
+    implementation 'com.github.mjrinker:crystal-range-seekbar:77d3cc9994'
 }
 ```
 
@@ -310,6 +310,7 @@ __Available attributes__
 + ``steps``: minimum steps between range, default NO_STEP ``-1f``
 + ``gap``: maintain minimum range between two thumbs, range must be greater >= min value && <= max value, default ``0f``
 + ``bar_height``: bar height, default determined by thumb size
++ ``bar_highlight_height``: active bar height, default determined by thumb size
 + ``fix_gap``: maintain fix range between two thumbs, range must be greater >= min value && <= max value, default NO_FIXED_GAP ``-1f``
 + ``bar_color_mode`` color fill mode of inactive bar; can be ``ColorMode.SOLID`` or ``ColorMode.GRADIENT``; default is ``ColorMode.SOLID``
 + ``bar_color`` inactive bar background color, default ``Color.GRAY``

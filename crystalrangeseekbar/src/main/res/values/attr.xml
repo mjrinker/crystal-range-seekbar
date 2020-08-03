@@ -38,6 +38,7 @@
         <enum name="_byte" value="5" />
     </attr>
     <attr name="bar_height" format="dimension"/>
+    <attr name="bar_highlight_height" format="dimension"/>
     <attr name="seek_bar_touch_enabled" format="boolean" />
 
     <!-- Seekbar -->
@@ -59,6 +60,7 @@
         <attr name="bar_highlight_color" />
         <attr name="bar_highlight_gradient_start" />
         <attr name="bar_highlight_gradient_end" />
+        <attr name="bar_highlight_height" />
         <attr name="thumb_diameter" />
         <attr name="position" />
         <attr name="data_type" />
@@ -88,6 +90,7 @@
         <attr name="bar_highlight_color" />
         <attr name="bar_highlight_gradient_start" />
         <attr name="bar_highlight_gradient_end" />
+        <attr name="bar_highlight_height" />
         <attr name="thumb_diameter" />
         <attr name="position" />
         <attr name="data_type" />
