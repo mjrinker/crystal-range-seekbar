@@ -1,12 +1,8 @@
-[ ![Download](https://api.bintray.com/packages/syedowaisali/maven/crystalrangeseekbar/images/download.svg) ](https://bintray.com/syedowaisali/maven/crystalrangeseekbar/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Crystal%20Range%20Seekbar-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3996) [![Coding Signals](https://img.shields.io/badge/Coding%20Signals-Crystal%20Range%20Seekbar-orange.svg)](http://codingsignals.com/crystal-range-seekbar-in-android/)
-
-
-
 # Crystal Range Seekbar
 
 An extended version of seekbar and range seekbar with basic and advanced customization.
 
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6cnh3MXY3TWstQWM)
+![alt tag](https://camo.githubusercontent.com/a91a36fcd741020ed5fa45e4f6eb3860c4b3ddcf/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e794941425436636e68334d5859335457737451574d)
 
 # Usage
 Add a dependency to your `build.gradle`:
@@ -23,7 +19,7 @@ dependencies {
 - Creating newly widget from activity, fragment or dialog.
 
 # Sample usage - Seekbar
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6eFZkcFZKbWUxY1E)
+![alt tag](https://camo.githubusercontent.com/963512b0613382feaf02db5d8bd0e289e823b5b9/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e79494142543665465a6b63465a4b62575578593145)
 
 Default style using xml.
 ```groovy
@@ -33,7 +29,7 @@ Default style using xml.
     android:layout_height="wrap_content"/>
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6Snk1Q21TbjhkWjQ)
+![alt tag](https://camo.githubusercontent.com/2df9d184251669fbe494782a38479e34c9729fea/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e794941425436536e6b3151323154626a686b576a51)
 
 Styling with bubble animation using custom widget `BubbleThumbSeekbar`.
 ```groovy
@@ -51,7 +47,7 @@ Styling with bubble animation using custom widget `BubbleThumbSeekbar`.
     app:data_type="_integer"/>
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6cHBraW9fUDBMaEU)
+![alt tag](https://camo.githubusercontent.com/1fd3502e570fdb8082d13db2dac9fa89e105f7f6/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e79494142543663484272615739665544424d614555)
 
 Styling with bubble animation with drawable using custom widget `BubbleThumbSeekbar`.
 ```groovy
@@ -70,7 +66,7 @@ Styling with bubble animation with drawable using custom widget `BubbleThumbSeek
     app:data_type="_integer"/>
 ```                    
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6c0FnSDlVYnJyNVE)
+![alt tag](https://camo.githubusercontent.com/53a938978297c75ab527fab4aafc19b6ddc9acef/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e7949414254366330466e53446c56596e4a794e5645)
 
 Right to Left position (rtl)
 ```groovy
@@ -81,7 +77,7 @@ Right to Left position (rtl)
     app:position="right"/>
 ```                    
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6RncwVndkSFFqMFE)
+![alt tag](https://camo.githubusercontent.com/fd971408891dbd326deccdf46e46ec99b6cdce71/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e794941425436526e6377566e646b534646714d4645)
 
 Right to Left position with drawable position update from code (rtl)
 ```groovy
@@ -106,7 +102,7 @@ final CrystalSeekbar rangeSeekbar = (CrystalSeekbar) rootView.findViewById(R.id.
 rangeSeekbar.setPosition(CrystalSeekbar.Position.RIGHT).apply();
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6eFZkcFZKbWUxY1E)
+![alt tag](https://camo.githubusercontent.com/963512b0613382feaf02db5d8bd0e289e823b5b9/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e79494142543665465a6b63465a4b62575578593145)
 
 Create new seekbar from code and add to any view.
 ```java
@@ -138,7 +134,7 @@ RelativeLayout container = (RelativeLayout) rootView.findViewById(R.id.contRange
 container.addView(rangeSeekbar);
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6NloxcEJOVTJzQ00)
+![alt tag](https://camo.githubusercontent.com/a583846f7f869f6fce35ecbdd73ea1810adc404e/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e7949414254364e6c6f7863454a4f56544a7a513030)
 
 Styling with create custom widget
 ```java
@@ -204,7 +200,7 @@ public class MySeekbar extends CrystalSeekbar {
 ```
 
 # Sample usage - Range Seekbar
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6Q19QMzhoZzZubFE)
+![alt tag](https://camo.githubusercontent.com/61cd7569a834c120ca915efa7d03915858af73c1/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e794941425436513139514d7a686f5a7a5a75624645)
 
 Default style using xml.
 ```groovy
@@ -240,7 +236,7 @@ rangeSeekbar.setOnRangeSeekbarFinalValueListener(new OnRangeSeekbarFinalValueLis
 });
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6UW04d01ORk1Ob0E)
+![alt tag](https://camo.githubusercontent.com/623a403f3aae662be0f0c1066e615e97952bf833/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e794941425436555730346430314f526b314f623045)
 
 Styling with bubble animation with drawable using custom widget `BubbleThumbRangeSeekbar`.
 ```groovy
@@ -261,7 +257,7 @@ Styling with bubble animation with drawable using custom widget `BubbleThumbRang
     app:data_type="_integer"/>
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6bnZJWVZwUGV6TGc)
+![alt tag](https://camo.githubusercontent.com/b3bf56e3993a509e9da444932aef57e08b7efb88/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e794941425436626e5a4a57565a7755475636544763)
 
 Set minimum range (gap).
 ```groovy
@@ -282,7 +278,7 @@ Set minimum range (gap).
     app:data_type="_integer"/>
 ```
 ---
-![alt tag](https://drive.google.com/uc?export=view&id=0B9bDENyIABT6eXRMQlkzNjA5cDg)
+![alt tag](https://camo.githubusercontent.com/0457c0e1323a57bf0b17032365f71135dab8084c/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3042396244454e7949414254366558524d516c6b7a4e6a4135634467)
 
 Set fix range (gap).
 ```groovy
@@ -370,3 +366,4 @@ limitations under the License.
 
 * [Syed Owais Ali](https://github.com/syedowaisali) *original Author*
 * [Balazs Rozsenich](https://github.com/m3dw3)
+* [Matt Rinker](https://github.com/mjrinker) *this fork*
