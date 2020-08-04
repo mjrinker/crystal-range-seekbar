@@ -20,6 +20,7 @@
     <attr name="bar_highlight_color_mode" format="enum">
         <enum name="solid" value="0" />
         <enum name="gradient" value="1" />
+        <enum name="gradient_partial" value="2" />
     </attr>
     <attr name="bar_highlight_color" format="color" />
     <attr name="bar_highlight_gradient_start" format="color" />

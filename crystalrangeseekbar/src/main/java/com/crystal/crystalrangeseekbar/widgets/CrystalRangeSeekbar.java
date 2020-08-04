@@ -54,6 +54,7 @@ public class CrystalRangeSeekbar extends View {
     public static final class ColorMode {
         public static final int SOLID = 0;
         public static final int GRADIENT = 1;
+        public static final int GRADIENT_PARTIAL = 2;
     }
 
     //////////////////////////////////////////
@@ -118,6 +119,7 @@ public class CrystalRangeSeekbar extends View {
     private double normalizedMaxValue = 100d;
     private int pointerIndex;
     private RectF _rect;
+    private RectF _rectBar;
     private Paint _paint;
 
     private RectF rectLeftThumb, rectRightThumb;
@@ -223,6 +225,7 @@ public class CrystalRangeSeekbar extends View {
 
         _paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         _rect = new RectF();
+        _rectBar = new RectF();
         rectLeftThumb = new RectF();
         rectRightThumb = new RectF();
 
@@ -718,7 +721,7 @@ public class CrystalRangeSeekbar extends View {
         canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint);
     }
 
-    protected void setupHighlightBar(final Canvas canvas, final Paint paint, final RectF rect){
+    protected void setupHighlightBar(final Canvas canvas, final Paint paint, final RectF rect, final RectF rectBar){
         rect.left = normalizedToScreen(normalizedMinValue) + (getThumbWidth() / 2);
         rect.top = 0.5f * (getHeight() - barHighlightHeight);
         rect.right = normalizedToScreen(normalizedMaxValue) + (getThumbWidth() / 2);
@@ -731,9 +734,25 @@ public class CrystalRangeSeekbar extends View {
             paint.setColor(barHighlightColor);
             drawHighlightBar(canvas, paint, rect);
 
-        } else {
+        } else if (barHighlightColorMode == CrystalSeekbar.ColorMode.GRADIENT) {
             paint.setShader(
                     new LinearGradient(rect.left, rect.bottom, rect.right, rect.top,
+                            barHighlightGradientStart,
+                            barHighlightGradientEnd,
+                            Shader.TileMode.MIRROR)
+            );
+
+            drawHighlightBar(canvas, paint, rect);
+
+            paint.setShader(null);
+        } else {
+            rectBar.left   = barPadding;
+            rectBar.top    = 0.5f * (getHeight() - barHeight);
+            rectBar.right  = getWidth() - barPadding;
+            rectBar.bottom = 0.5f * (getHeight() + barHeight);
+
+            paint.setShader(
+                    new LinearGradient(rectBar.left, rectBar.bottom, rectBar.right, rectBar.top,
                             barHighlightGradientStart,
                             barHighlightGradientEnd,
                             Shader.TileMode.MIRROR)
@@ -1061,7 +1080,7 @@ public class CrystalRangeSeekbar extends View {
         setupBar(canvas, _paint, _rect);
 
         // setup seek bar active range line
-        setupHighlightBar(canvas, _paint ,_rect);
+        setupHighlightBar(canvas, _paint ,_rect, _rectBar);
 
         // draw left thumb
         setupLeftThumb(canvas, _paint, _rect);

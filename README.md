@@ -316,7 +316,7 @@ __Available attributes__
 + ``bar_color`` inactive bar background color, default ``Color.GRAY``
 + ``bar_gradient_start`` inactive bar background gradient start color, default ``Color.GRAY``
 + ``bar_gradient_end`` inactive bar background gradient end color, default ``Color.DKGRAY``
-+ ``bar_highlight_color_mode`` color fill mode of active bar; can be ``ColorMode.SOLID`` or ``ColorMode.GRADIENT``; default is ``ColorMode.SOLID``
++ ``bar_highlight_color_mode`` color fill mode of active bar; can be ``ColorMode.SOLID``, ``ColorMode.GRADIENT``, or ``ColorMode.GRADIENT_PARTIAL``; default is ``ColorMode.SOLID``
 + ``bar_highlight_color`` active bar background color, default ``Color.BLACK``
 + ``bar_highlight_gradient_start`` active bar background gradient start color, default ``Color.DKGRAY``
 + ``bar_highlight_gradient_end`` active bar background gradient end color, default ``Color.BLACK``
