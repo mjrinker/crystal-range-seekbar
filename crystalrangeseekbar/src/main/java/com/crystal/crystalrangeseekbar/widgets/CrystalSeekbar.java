@@ -93,6 +93,7 @@ public class CrystalSeekbar extends View {
     private int thumbColor;
     private int thumbColorNormal;
     private int thumbColorPressed;
+    private boolean thumbColorMatchBarEnabled;
     private boolean seekBarTouchEnabled;
     private float barPadding;
     private float _barHeight;
@@ -162,6 +163,7 @@ public class CrystalSeekbar extends View {
             barHighlightGradientEnd = getBarHighlightGradientEnd(array);
             thumbColorNormal = getThumbColor(array);
             thumbColorPressed = getThumbColorPressed(array);
+            thumbColorMatchBarEnabled = isThumbColorMatchBarEnabled(array);
             thumbDrawable = getThumbDrawable(array);
             thumbDrawablePressed = getThumbDrawablePressed(array);
             dataType = getDataType(array);
@@ -601,6 +603,28 @@ public class CrystalSeekbar extends View {
         return typedArray.getColor(R.styleable.CrystalSeekbar_thumb_color_pressed, Color.DKGRAY);
     }
 
+    public int getMatchingThumbColor() {
+        double percent = (getSelectedMinValue().floatValue() - minValue) / (maxValue - minValue);
+        int barHighlightColorBlend = barHighlightColor;
+        int barColorBlend = barColor;
+        if (barHighlightColorMode != ColorMode.SOLID) {
+            int[] barHighlightGradientColors = {barHighlightGradientStart, barHighlightGradientEnd};
+            barHighlightColorBlend = blendColors(percent, barHighlightGradientColors);
+        }
+
+        if (barColorMode != ColorMode.SOLID) {
+            int[] barGradientColors = {barGradientStart, barGradientEnd};
+            barColorBlend = blendColors(percent, barGradientColors);
+        }
+
+        int[] colors = {barHighlightColorBlend, barColorBlend};
+        return blendColors((1 - percent), colors);
+    }
+
+    protected boolean isThumbColorMatchBarEnabled(final TypedArray typedArray){
+        return typedArray.getBoolean(R.styleable.CrystalSeekbar_thumb_color_match_bar, false);
+    }
+
     protected Drawable getThumbDrawable(final TypedArray typedArray) {
         return typedArray.getDrawable(R.styleable.CrystalSeekbar_thumb_image);
     }
@@ -705,8 +729,12 @@ public class CrystalSeekbar extends View {
     }
 
     protected void setupLeftThumb(final Canvas canvas, final Paint paint, final RectF rect) {
+        if (thumbColorMatchBarEnabled) {
+            thumbColor = getMatchingThumbColor();
+        } else {
+            thumbColor = (Thumb.MIN.equals(pressedThumb)) ? thumbColorPressed : thumbColorNormal;
+        }
 
-        thumbColor = (Thumb.MIN.equals(pressedThumb)) ? thumbColorPressed : thumbColorNormal;
         paint.setColor(thumbColor);
 
         rectThumb.left = normalizedToScreen(normalizedMinValue);
@@ -953,6 +981,12 @@ public class CrystalSeekbar extends View {
                     if (onSeekbarChangeListener != null) {
                         onSeekbarChangeListener.valueChanged(getSelectedMinValue());
                     }
+
+                    if (thumbColorMatchBarEnabled) {
+                        int matchedColor = getMatchingThumbColor();
+                        setThumbColor(matchedColor);
+                        setThumbHighlightColor(matchedColor);
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -1002,5 +1036,59 @@ public class CrystalSeekbar extends View {
 
         return true;
 
+    }
+
+    public static String hex2Digits(String hexd) {
+        if (hexd.length() == 1) {
+            return '0' + hexd;
+        }
+        return hexd;
+    }
+
+    public static String argbToHex(int a, int r, int g, int b) {
+        String alpha = hex2Digits(Integer.toHexString(a));
+        String red = hex2Digits(Integer.toHexString(r));
+        String green = hex2Digits(Integer.toHexString(g));
+        String blue = hex2Digits(Integer.toHexString(b));
+        return alpha + red + green + blue;
+    }
+
+    public static int parseColor(String colorString) {
+        long color = Long.parseLong(colorString, 16);
+        if (colorString.length() == 6) {
+            // Set the alpha value
+            color |= 0x00000000ff000000;
+        } else if (colorString.length() != 8) {
+            throw new IllegalArgumentException("Unknown color");
+        }
+        return (int)color;
+    }
+
+    public static int blendColors(double percent, int[] colors) {
+        int left = (int)Math.floor(percent * (colors.length - 1));
+        int right = (int)Math.ceil(percent * (colors.length - 1));
+        int colorLeft = colors[left];
+        int colorRight = colors[right];
+
+        float leftR = ((colorLeft >> 16) & 0xff);
+        float leftG = ((colorLeft >> 8) & 0xff);
+        float leftB = ((colorLeft) & 0xff);
+        float leftA = ((colorLeft >> 24) & 0xff);
+
+        float rightR = ((colorRight >> 16) & 0xff);
+        float rightG = ((colorRight >> 8) & 0xff);
+        float rightB = ((colorRight) & 0xff);
+        float rightA = ((colorRight >> 24) & 0xff);
+
+        double step = 1.0 / (colors.length - 1);
+        double percentRight = (percent - (left * step)) / step;
+        double percentLeft = 1.0 - percentRight;
+
+        int red = (int) (leftR * percentLeft + rightR * percentRight);
+        int green = (int) (leftG * percentLeft + rightG * percentRight);
+        int blue = (int) (leftB * percentLeft + rightB * percentRight);
+        int alpha = (int) (leftA * percentLeft + rightA * percentRight);
+
+        return parseColor(argbToHex(alpha, red, green, blue));
     }
 }

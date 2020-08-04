@@ -26,6 +26,7 @@
     <attr name="bar_highlight_gradient_start" format="color" />
     <attr name="bar_highlight_gradient_end" format="color" />
     <attr name="thumb_diameter" format="dimension"/>
+    <attr name="thumb_color_match_bar" format="boolean"/>
     <attr name="position" format="enum">
         <enum name="left" value="0" />
         <enum name="right" value="1" />
@@ -63,6 +64,7 @@
         <attr name="bar_highlight_gradient_end" />
         <attr name="bar_highlight_height" />
         <attr name="thumb_diameter" />
+        <attr name="thumb_color_match_bar" />
         <attr name="position" />
         <attr name="data_type" />
         <attr name="thumb_color" format="color" />
@@ -93,6 +95,7 @@
         <attr name="bar_highlight_gradient_end" />
         <attr name="bar_highlight_height" />
         <attr name="thumb_diameter" />
+        <attr name="thumb_color_match_bar" />
         <attr name="position" />
         <attr name="data_type" />
         <attr name="left_thumb_color" format="color" />

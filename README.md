@@ -320,6 +320,7 @@ __Available attributes__
 + ``bar_highlight_color`` active bar background color, default ``Color.BLACK``
 + ``bar_highlight_gradient_start`` active bar background gradient start color, default ``Color.DKGRAY``
 + ``bar_highlight_gradient_end`` active bar background gradient end color, default ``Color.BLACK``
++ ``thumb_color_match_bar`` match the color of the thumb to the color of the current position on the bar, default ``false``
 + ``thumb_color`` default thumb color, default ``Color.BLACK`` **(only CrystalSeekbar)**
 + ``thumb_color_pressed`` active thumb color, default ``Color.DKGRAY`` **(only CrystalSeekbar)**
 + ``thumb_image`` left drawable, default ``null`` **(only CrystalSeekbar)**
