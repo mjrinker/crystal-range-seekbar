@@ -15,6 +15,8 @@
         <enum name="gradient" value="1" />
     </attr>
     <attr name="bar_color" format="color" />
+    <attr name="bar_gradient" format="string" />
+    <attr name="bar_gradient_stops" format="string" />
     <attr name="bar_gradient_start" format="color" />
     <attr name="bar_gradient_end" format="color" />
     <attr name="bar_highlight_color_mode" format="enum">
@@ -23,6 +25,8 @@
         <enum name="gradient_partial" value="2" />
     </attr>
     <attr name="bar_highlight_color" format="color" />
+    <attr name="bar_highlight_gradient" format="string" />
+    <attr name="bar_highlight_gradient_stops" format="string" />
     <attr name="bar_highlight_gradient_start" format="color" />
     <attr name="bar_highlight_gradient_end" format="color" />
     <attr name="thumb_diameter" format="dimension"/>
@@ -56,10 +60,14 @@
         <attr name="bar_height" />
         <attr name="bar_color_mode" />
         <attr name="bar_color" />
+        <attr name="bar_gradient" />
+        <attr name="bar_gradient_stops" />
         <attr name="bar_gradient_start" />
         <attr name="bar_gradient_end" />
         <attr name="bar_highlight_color_mode" />
         <attr name="bar_highlight_color" />
+        <attr name="bar_highlight_gradient" />
+        <attr name="bar_highlight_gradient_stops" />
         <attr name="bar_highlight_gradient_start" />
         <attr name="bar_highlight_gradient_end" />
         <attr name="bar_highlight_height" />
@@ -87,10 +95,14 @@
         <attr name="bar_height"/>
         <attr name="bar_color_mode" />
         <attr name="bar_color" />
+        <attr name="bar_gradient" />
+        <attr name="bar_gradient_stops" />
         <attr name="bar_gradient_start" />
         <attr name="bar_gradient_end" />
         <attr name="bar_highlight_color_mode" />
         <attr name="bar_highlight_color" />
+        <attr name="bar_highlight_gradient" />
+        <attr name="bar_highlight_gradient_stops" />
         <attr name="bar_highlight_gradient_start" />
         <attr name="bar_highlight_gradient_end" />
         <attr name="bar_highlight_height" />

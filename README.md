@@ -314,10 +314,14 @@ __Available attributes__
 + ``fix_gap``: maintain fix range between two thumbs, range must be greater >= min value && <= max value, default NO_FIXED_GAP ``-1f``
 + ``bar_color_mode`` color fill mode of inactive bar; can be ``ColorMode.SOLID`` or ``ColorMode.GRADIENT``; default is ``ColorMode.SOLID``
 + ``bar_color`` inactive bar background color, default ``Color.GRAY``
++ ``bar_gradient`` a list of hexadecimal colors (separated by semi-colons) to be used in the bar background gradient
++ ``bar_gradient_stops`` a list of float values (separated by semi-colons) that correspond to the position of each of the colors in ``bar_gradient``
 + ``bar_gradient_start`` inactive bar background gradient start color, default ``Color.GRAY``
 + ``bar_gradient_end`` inactive bar background gradient end color, default ``Color.DKGRAY``
 + ``bar_highlight_color_mode`` color fill mode of active bar; can be ``ColorMode.SOLID``, ``ColorMode.GRADIENT``, or ``ColorMode.GRADIENT_PARTIAL``; default is ``ColorMode.SOLID``
 + ``bar_highlight_color`` active bar background color, default ``Color.BLACK``
++ ``bar_highlight_gradient`` a list of hexadecimal colors (separated by semi-colons) to be used in the active bar background gradient
++ ``bar_highlight_gradient_stops`` a list of float values (separated by semi-colons) that correspond to the position of each of the colors in ``bar_highlight_gradient``
 + ``bar_highlight_gradient_start`` active bar background gradient start color, default ``Color.DKGRAY``
 + ``bar_highlight_gradient_end`` active bar background gradient end color, default ``Color.BLACK``
 + ``thumb_color_match_bar`` match the color of the thumb to the color of the current position on the bar, default ``false``

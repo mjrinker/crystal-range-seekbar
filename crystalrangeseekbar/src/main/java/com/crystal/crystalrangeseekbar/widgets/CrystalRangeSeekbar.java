@@ -82,10 +82,14 @@ public class CrystalRangeSeekbar extends View {
     private float cornerRadius;
     private int barColorMode;
     private int barColor;
+    private int[] barGradient;
+    private float[] barGradientStops;
     private int barGradientStart;
     private int barGradientEnd;
     private int barHighlightColorMode;
     private int barHighlightColor;
+    private int[] barHighlightGradient;
+    private float[] barHighlightGradientStops;
     private int barHighlightGradientStart;
     private int barHighlightGradientEnd;
     private int leftThumbColor;
@@ -165,10 +169,14 @@ public class CrystalRangeSeekbar extends View {
             _barHighlightHeight    = getBarHighlightHeight(array);
             barColorMode           = getBarColorMode(array);
             barColor               = getBarColor(array);
+            barGradient            = getBarGradient(array);
+            barGradientStops       = getBarGradientStops(array);
             barGradientStart       = getBarGradientStart(array);
             barGradientEnd         = getBarGradientEnd(array);
             barHighlightColorMode  = getBarHighlightColorMode(array);
             barHighlightColor      = getBarHighlightColor(array);
+            barHighlightGradient   = getBarHighlightGradient(array);
+            barHighlightGradientStops = getBarHighlightGradientStops(array);
             barHighlightGradientStart = getBarHighlightGradientStart(array);
             barHighlightGradientEnd = getBarHighlightGradientEnd(array);
             leftThumbColorNormal   = getLeftThumbColor(array);
@@ -307,6 +315,16 @@ public class CrystalRangeSeekbar extends View {
         return this;
     }
 
+    public CrystalRangeSeekbar setBarGradient(int[] barGradient) {
+        this.barGradient = barGradient;
+        return this;
+    }
+
+    public CrystalRangeSeekbar setBarGradientStops(float[] barGradientStops) {
+        this.barGradientStops = barGradientStops;
+        return this;
+    }
+
     public CrystalRangeSeekbar setBarGradientStart(int barGradientStart) {
         this.barGradientStart = barGradientStart;
         return this;
@@ -324,6 +342,16 @@ public class CrystalRangeSeekbar extends View {
 
     public CrystalRangeSeekbar setBarHighlightColor(int barHighlightColor) {
         this.barHighlightColor = barHighlightColor;
+        return this;
+    }
+
+    public CrystalRangeSeekbar setBarHighlightGradient(int[] barHighlightGradient) {
+        this.barHighlightGradient = barHighlightGradient;
+        return this;
+    }
+
+    public CrystalRangeSeekbar setBarHighlightGradientStops(float[] barHighlightGradientStops) {
+        this.barHighlightGradientStops = barHighlightGradientStops;
         return this;
     }
 
@@ -616,6 +644,36 @@ public class CrystalRangeSeekbar extends View {
         return typedArray.getColor(R.styleable.CrystalRangeSeekbar_bar_color, Color.GRAY);
     }
 
+    protected int[] getBarGradient(final TypedArray typedArray) {
+        String hexdColorsString = typedArray.getString(R.styleable.CrystalRangeSeekbar_bar_gradient);
+        if (hexdColorsString == null) {
+            return new int[]{};
+        }
+
+        String[] hexdColors = hexdColorsString.split(";");
+        int[] colors = new int[hexdColors.length];
+        for (int i = 0; i < hexdColors.length; i++) {
+            colors[i] = parseColor(hexdColors[i].replaceAll("#", ""));
+        }
+
+        return colors;
+    }
+
+    protected float[] getBarGradientStops(final TypedArray typedArray) {
+        String stopStringsString = typedArray.getString(R.styleable.CrystalRangeSeekbar_bar_gradient_stops);
+        if (stopStringsString == null) {
+            return new float[]{};
+        }
+
+        String[] stopStrings = stopStringsString.split(";");
+        float[] stops = new float[stopStrings.length];
+        for (int i = 0; i < stopStrings.length; i++) {
+            stops[i] = Float.parseFloat(stopStrings[i]);
+        }
+
+        return stops;
+    }
+
     protected int getBarGradientStart(final TypedArray typedArray) {
         return typedArray.getColor(R.styleable.CrystalRangeSeekbar_bar_gradient_start, Color.GRAY);
     }
@@ -630,6 +688,36 @@ public class CrystalRangeSeekbar extends View {
 
     protected int getBarHighlightColor(final TypedArray typedArray) {
         return typedArray.getColor(R.styleable.CrystalRangeSeekbar_bar_highlight_color, Color.BLACK);
+    }
+
+    protected int[] getBarHighlightGradient(final TypedArray typedArray) {
+        String hexdColorsString = typedArray.getString(R.styleable.CrystalRangeSeekbar_bar_highlight_gradient);
+        if (hexdColorsString == null) {
+            return new int[]{};
+        }
+
+        String[] hexdColors = hexdColorsString.split(";");
+        int[] colors = new int[hexdColors.length];
+        for (int i = 0; i < hexdColors.length; i++) {
+            colors[i] = parseColor(hexdColors[i].replaceAll("#", ""));
+        }
+
+        return colors;
+    }
+
+    protected float[] getBarHighlightGradientStops(final TypedArray typedArray) {
+        String stopStringsString = typedArray.getString(R.styleable.CrystalRangeSeekbar_bar_highlight_gradient_stops);
+        if (stopStringsString == null) {
+            return new float[]{};
+        }
+
+        String[] stopStrings = stopStringsString.split(";");
+        float[] stops = new float[stopStrings.length];
+        for (int i = 0; i < stopStrings.length; i++) {
+            stops[i] = Float.parseFloat(stopStrings[i]);
+        }
+
+        return stops;
     }
 
     protected int getBarHighlightGradientStart(final TypedArray typedArray) {
@@ -661,12 +749,22 @@ public class CrystalRangeSeekbar extends View {
         int barHighlightColorBlend = barHighlightColor;
         int barColorBlend = barColor;
         if (barHighlightColorMode != CrystalSeekbar.ColorMode.SOLID) {
-            int[] barHighlightGradientColors = {barHighlightGradientStart, barHighlightGradientEnd};
+            int[] barHighlightGradientColors;
+            if (barHighlightGradient.length == 0) {
+                barHighlightGradientColors = new int[]{barHighlightGradientStart, barHighlightGradientEnd};
+            } else {
+                barHighlightGradientColors = barHighlightGradient;
+            }
             barHighlightColorBlend = blendColors(percent, barHighlightGradientColors);
         }
 
         if (barColorMode != CrystalSeekbar.ColorMode.SOLID) {
-            int[] barGradientColors = {barGradientStart, barGradientEnd};
+            int[] barGradientColors;
+            if (barGradient.length == 0) {
+                barGradientColors = new int[]{barHighlightGradientStart, barHighlightGradientEnd};
+            } else {
+                barGradientColors = barGradient;
+            }
             barColorBlend = blendColors(percent, barGradientColors);
         }
 
@@ -679,12 +777,22 @@ public class CrystalRangeSeekbar extends View {
         int barHighlightColorBlend = barHighlightColor;
         int barColorBlend = barColor;
         if (barHighlightColorMode != CrystalSeekbar.ColorMode.SOLID) {
-            int[] barHighlightGradientColors = {barHighlightGradientStart, barHighlightGradientEnd};
+            int[] barHighlightGradientColors;
+            if (barHighlightGradient.length == 0) {
+                barHighlightGradientColors = new int[]{barHighlightGradientStart, barHighlightGradientEnd};
+            } else {
+                barHighlightGradientColors = barHighlightGradient;
+            }
             barHighlightColorBlend = blendColors(percent, barHighlightGradientColors);
         }
 
         if (barColorMode != CrystalSeekbar.ColorMode.SOLID) {
-            int[] barGradientColors = {barGradientStart, barGradientEnd};
+            int[] barGradientColors;
+            if (barGradient.length == 0) {
+                barGradientColors = new int[]{barHighlightGradientStart, barHighlightGradientEnd};
+            } else {
+                barGradientColors = barGradient;
+            }
             barColorBlend = blendColors(percent, barGradientColors);
         }
 
@@ -746,10 +854,25 @@ public class CrystalRangeSeekbar extends View {
             drawBar(canvas, paint, rect);
 
         } else {
+            if (barGradient.length == 0) {
+                barGradient = new int[]{barGradientStart, barGradientEnd};
+            }
+
+            float[] stops = new float[barGradient.length];
+            float currentStopSum = 0;
+            for (int i = 0; i < barGradient.length; i++) {
+                if (i < barGradientStops.length) {
+                    stops[i] = barGradientStops[i];
+                } else {
+                    stops[i] = ((1 - currentStopSum) / (barGradient.length - i)) + currentStopSum;
+                }
+                currentStopSum = stops[i];
+            }
+
             paint.setShader(
                     new LinearGradient(rect.left, rect.bottom, rect.right, rect.top,
-                            barGradientStart,
-                            barGradientEnd,
+                            barGradient,
+                            stops,
                             Shader.TileMode.MIRROR)
             );
 
@@ -777,10 +900,25 @@ public class CrystalRangeSeekbar extends View {
             drawHighlightBar(canvas, paint, rect);
 
         } else if (barHighlightColorMode == CrystalSeekbar.ColorMode.GRADIENT) {
+            if (barHighlightGradient.length == 0) {
+                barHighlightGradient = new int[]{barHighlightGradientStart, barHighlightGradientEnd};
+            }
+
+            float[] stops = new float[barHighlightGradient.length];
+            float currentStopSum = 0;
+            for (int i = 0; i < barHighlightGradient.length; i++) {
+                if (i < barHighlightGradientStops.length) {
+                    stops[i] = barHighlightGradientStops[i];
+                } else {
+                    stops[i] = ((1 - currentStopSum) / (barGradient.length - i)) + currentStopSum;
+                }
+                currentStopSum = stops[i];
+            }
+
             paint.setShader(
                     new LinearGradient(rect.left, rect.bottom, rect.right, rect.top,
-                            barHighlightGradientStart,
-                            barHighlightGradientEnd,
+                            barHighlightGradient,
+                            stops,
                             Shader.TileMode.MIRROR)
             );
 
@@ -793,10 +931,25 @@ public class CrystalRangeSeekbar extends View {
             rectBar.right  = getWidth() - barPadding;
             rectBar.bottom = 0.5f * (getHeight() + barHeight);
 
+            if (barHighlightGradient.length == 0) {
+                barHighlightGradient = new int[]{barHighlightGradientStart, barHighlightGradientEnd};
+            }
+
+            float[] stops = new float[barHighlightGradient.length];
+            float currentStopSum = 0;
+            for (int i = 0; i < barHighlightGradient.length; i++) {
+                if (i < barHighlightGradientStops.length) {
+                    stops[i] = barHighlightGradientStops[i];
+                } else {
+                    stops[i] = ((1 - currentStopSum) / (barGradient.length - i)) + currentStopSum;
+                }
+                currentStopSum = stops[i];
+            }
+
             paint.setShader(
                     new LinearGradient(rectBar.left, rectBar.bottom, rectBar.right, rectBar.top,
-                            barHighlightGradientStart,
-                            barHighlightGradientEnd,
+                            barHighlightGradient,
+                            stops,
                             Shader.TileMode.MIRROR)
             );
 
