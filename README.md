@@ -8,7 +8,8 @@ An extended version of seekbar and range seekbar with basic and advanced customi
 Add a dependency to your `build.gradle`:
 ```groovy
 dependencies {
-    implementation 'com.github.mjrinker:crystal-range-seekbar:0ce83f16b1'
+    implementation 'com.github.mjrinker:crystal-range-seekbar:7b219a1b92'
+    7b219a1b92cb3384078e041e2b32aec3be6e7f16
 }
 ```
 
