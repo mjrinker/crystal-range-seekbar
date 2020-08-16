@@ -1208,8 +1208,8 @@ public class CrystalSeekbar extends View {
     }
 
     public static int blendColors(double percent, int[] colors) {
-        int left = (int)Math.floor(percent * (colors.length - 1));
-        int right = (int)Math.ceil(percent * (colors.length - 1));
+        int left = Math.max(0, (int)Math.floor(percent * (colors.length - 1)));
+        int right = Math.max(0, (int)Math.ceil(percent * (colors.length - 1)));
         int colorLeft = colors[left];
         int colorRight = colors[right];
 
